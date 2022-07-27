@@ -1,4 +1,5 @@
 <?php
 return [
-    "count" => 100000
+    "once" => 10000,
+    "count" => 1000000
 ];

@@ -15,8 +15,12 @@ class FakerTableSeeder extends Seeder
     public function run()
     {
         $start = microtime(true);
+        $once = config('faker.once');
         $count = config('faker.count');
-        \App\Models\Faker::factory()->count($count)->create();
+        for ($i = 0; $i < floor($count / $once); $i++) {
+            Faker::factory()->count($once)->create();
+        };
+        Faker::factory()->count(($count % $once))->create();
         $end = microtime(true);
         $sec = ($end - $start);
         print_r('処理時間 = ' . $sec . ' 秒');
