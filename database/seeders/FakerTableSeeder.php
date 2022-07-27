@@ -15,7 +15,7 @@ class FakerTableSeeder extends Seeder
     public function run()
     {
         $start = microtime(true);
-        $count = 1000;
+        $count = config('faker.count');
         \App\Models\Faker::factory()->count($count)->create();
         $end = microtime(true);
         $sec = ($end - $start);
