@@ -33,14 +33,18 @@ class FakerTableSeeder extends Seeder
     {
         $times = floor($count / $once);
         $last = $count % $once;
-        for ($i = 0; $i < $times; $i++) {
+        if ($times != 0) {
             // $once件データを取得してINSERT
-            $data_once = $this->make_data($once);
-            Faker::insert($data_once);
+            for ($i = 0; $i < $times; $i++) {
+                $data_once = $this->make_data($once);
+                Faker::insert($data_once);
+            }
         }
         // lastのINSERT
-        $data_last = $this->make_data($last);
-        Faker::insert($data_last);
+        if ($last != 0) {
+            $data_last = $this->make_data($last);
+            Faker::insert($data_last);
+        }
     }
 
     public function make_data($num)
